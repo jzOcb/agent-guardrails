@@ -35,6 +35,7 @@ This installs the git pre-commit hook, creates a registry template, and copies c
 | `post-create-validate.sh` | After creating/editing `.py` files | Detects duplicates, missing imports, bypass patterns |
 | `check-secrets.sh` | Before commits / on demand | Scans for hardcoded tokens, keys, passwords |
 | `create-deployment-check.sh` | When setting up deployment verification | Creates .deployment-check.sh, checklist, and git hook template |
+| `install-skill-feedback-loop.sh` | When setting up skill update automation | Creates detection, auto-commit, and git hook for skill updates |
 
 ### Assets
 
@@ -50,6 +51,7 @@ This installs the git pre-commit hook, creates a registry template, and copies c
 | `enforcement-research.md` | Research on why code > prompts for enforcement |
 | `agents-md-template.md` | Template AGENTS.md with mechanical enforcement rules |
 | `deployment-verification-guide.md` | Full guide on preventing deployment gaps |
+| `skill-update-feedback.md` | Meta-enforcement: automatic skill update feedback loop |
 | `SKILL_CN.md` | Chinese translation of this document |
 
 ## Usage Workflow
@@ -112,7 +114,7 @@ See `references/SKILL_CN.md` for the full Chinese translation of this skill.
 **Symptom:** Tokens/keys in code instead of env vars.
 **Enforcement:** `check-secrets.sh` + git hook
 
-### 3. **Deployment Gap** (NEW)
+### 3. Deployment Gap
 **Symptom:** Built feature but forgot to wire it into production. Users don't receive benefit.
 **Example:** Updated `notify.py` but cron still calls old version.
 **Enforcement:** `.deployment-check.sh` + git hook
@@ -123,6 +125,18 @@ This is the **hardest to catch** because:
 - Problem only surfaces when user complains
 
 **Solution:** Mechanical end-to-end verification before allowing "done."
+
+### 4. **Skill Update Gap** (META - NEW)
+**Symptom:** Built enforcement improvement in project but forgot to update the skill itself.
+**Example:** Created deployment verification for Project A, but other projects don't benefit because skill wasn't updated.
+**Enforcement:** `install-skill-feedback-loop.sh` → automatic detection + semi-automatic commit
+
+This is a **meta-failure mode** because:
+- It's about enforcement improvements themselves
+- Without fix: improvements stay siloed
+- With fix: knowledge compounds automatically
+
+**Solution:** Automatic detection of enforcement improvements with task creation and semi-automatic commits.
 
 ## Key Principle
 
