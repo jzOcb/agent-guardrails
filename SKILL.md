@@ -34,6 +34,7 @@ This installs the git pre-commit hook, creates a registry template, and copies c
 | `pre-create-check.sh` | Before creating new `.py` files | Lists existing modules/functions to prevent reimplementation |
 | `post-create-validate.sh` | After creating/editing `.py` files | Detects duplicates, missing imports, bypass patterns |
 | `check-secrets.sh` | Before commits / on demand | Scans for hardcoded tokens, keys, passwords |
+| `create-deployment-check.sh` | When setting up deployment verification | Creates .deployment-check.sh, checklist, and git hook template |
 
 ### Assets
 
@@ -48,6 +49,7 @@ This installs the git pre-commit hook, creates a registry template, and copies c
 |------|----------|
 | `enforcement-research.md` | Research on why code > prompts for enforcement |
 | `agents-md-template.md` | Template AGENTS.md with mechanical enforcement rules |
+| `deployment-verification-guide.md` | Full guide on preventing deployment gaps |
 | `SKILL_CN.md` | Chinese translation of this document |
 
 ## Usage Workflow
@@ -74,6 +76,24 @@ bash scripts/post-create-validate.sh /path/to/new_file.py
 
 Fix any warnings before proceeding.
 
+### Setting up deployment verification
+
+```bash
+bash scripts/create-deployment-check.sh /path/to/project
+```
+
+This creates:
+- `.deployment-check.sh` - Automated verification script
+- `DEPLOYMENT-CHECKLIST.md` - Full deployment workflow
+- `.git-hooks/pre-commit-deployment` - Git hook template
+
+**Then customize:**
+1. Add tests to `.deployment-check.sh` for your integration points
+2. Document your flow in `DEPLOYMENT-CHECKLIST.md`
+3. Install the git hook
+
+See `references/deployment-verification-guide.md` for full guide.
+
 ### Adding to AGENTS.md
 
 Copy the template from `references/agents-md-template.md` and adapt to your project.
@@ -82,7 +102,31 @@ Copy the template from `references/agents-md-template.md` and adapt to your proj
 
 See `references/SKILL_CN.md` for the full Chinese translation of this skill.
 
+## Common Agent Failure Modes
+
+### 1. Reimplementation (Bypass Pattern)
+**Symptom:** Agent creates "quick version" instead of importing validated code.
+**Enforcement:** `pre-create-check.sh` + `post-create-validate.sh` + git hook
+
+### 2. Hardcoded Secrets
+**Symptom:** Tokens/keys in code instead of env vars.
+**Enforcement:** `check-secrets.sh` + git hook
+
+### 3. **Deployment Gap** (NEW)
+**Symptom:** Built feature but forgot to wire it into production. Users don't receive benefit.
+**Example:** Updated `notify.py` but cron still calls old version.
+**Enforcement:** `.deployment-check.sh` + git hook
+
+This is the **hardest to catch** because:
+- Code runs fine when tested manually
+- Agent marks task "done" after writing code
+- Problem only surfaces when user complains
+
+**Solution:** Mechanical end-to-end verification before allowing "done."
+
 ## Key Principle
 
 > Don't add more markdown rules. Add mechanical enforcement.
 > If an agent keeps bypassing a standard, don't write a stronger rule — write a hook that blocks it.
+>
+> **Corollary:** If an agent keeps forgetting integration, don't remind it — make it mechanically verify before commit.
