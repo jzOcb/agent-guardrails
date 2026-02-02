@@ -1,0 +1,77 @@
+#!/bin/bash
+# Git pre-commit hook — Mechanical enforcement of project standards
+# Blocks bypass patterns and hardcoded secrets in staged changes.
+# Install: cp this file to .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+
+set -euo pipefail
+
+ERRORS=0
+STAGED_DIFF=$(git diff --cached --diff-filter=ACM)
+
+# 1. Check for bypass patterns in staged changes
+echo "🔍 Checking for bypass patterns..."
+BYPASS_PATTERNS=(
+    "simplified version"
+    "quick version"
+    "temporary"
+    "TODO: integrate"
+    "# hack"
+    "# workaround"
+    "skip validation"
+    "bypass"
+)
+
+for pattern in "${BYPASS_PATTERNS[@]}"; do
+    if echo "$STAGED_DIFF" | grep -i "+.*$pattern" > /dev/null 2>&1; then
+        echo "  ⚠️  BLOCKED: Found bypass pattern '$pattern' in staged changes"
+        echo "$STAGED_DIFF" | grep -in "+.*$pattern" | head -3
+        ERRORS=$((ERRORS + 1))
+    fi
+done
+
+# 2. Check for hardcoded secrets
+echo "🔐 Checking for hardcoded secrets..."
+SECRET_PATTERNS=(
+    'token\s*=\s*["\x27][A-Za-z0-9_\-]{20,}'
+    'api_key\s*=\s*["\x27][A-Za-z0-9_\-]{20,}'
+    'secret\s*=\s*["\x27][A-Za-z0-9_\-]{20,}'
+    'password\s*=\s*["\x27][^\x27"]{8,}'
+    'Bearer [A-Za-z0-9_\-]{20,}'
+    'sk-[A-Za-z0-9]{20,}'
+    'ghp_[A-Za-z0-9]{20,}'
+    'xoxb-[A-Za-z0-9\-]{20,}'
+    'AKIA[0-9A-Z]{16}'
+)
+
+for pattern in "${SECRET_PATTERNS[@]}"; do
+    if echo "$STAGED_DIFF" | grep -P "+.*$pattern" > /dev/null 2>&1; then
+        echo "  🚨 BLOCKED: Possible hardcoded secret detected!"
+        echo "     Pattern: $pattern"
+        ERRORS=$((ERRORS + 1))
+    fi
+done
+
+# 3. Check staged Python files for os.getenv with default values
+STAGED_PY=$(git diff --cached --name-only --diff-filter=ACM | grep '\.py$' || true)
+if [ -n "$STAGED_PY" ]; then
+    echo "🐍 Checking Python files for secret defaults..."
+    for pyfile in $STAGED_PY; do
+        if git show ":$pyfile" 2>/dev/null | grep -n 'os\.getenv.*,.*["\x27]' | grep -iv 'default\|localhost\|http\|utf' > /dev/null 2>&1; then
+            echo "  ⚠️  WARNING: $pyfile may have os.getenv() with fallback secret values"
+            ERRORS=$((ERRORS + 1))
+        fi
+    done
+fi
+
+# Result
+if [ "$ERRORS" -gt 0 ]; then
+    echo ""
+    echo "╔══════════════════════════════════════════════════╗"
+    echo "║  ❌ COMMIT BLOCKED — $ERRORS issue(s) found            ║"
+    echo "║  Fix issues or use --no-verify to override       ║"
+    echo "╚══════════════════════════════════════════════════╝"
+    exit 1
+else
+    echo "✅ Pre-commit checks passed."
+    exit 0
+fi
