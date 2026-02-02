@@ -1,6 +1,13 @@
 # Agent Guardrails 🛡️
 
+[![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-8A2BE2)](https://github.com/topics/claude-code-skill)
+[![Clawdbot Skill](https://img.shields.io/badge/Clawdbot-Skill-blue)](https://clawdhub.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Version](https://img.shields.io/badge/version-1.1.0-green.svg)](./VERSION)
+
 **Mechanical enforcement tools to prevent AI agents from bypassing established project standards.**
+
+**Works with:** Claude Code | Clawdbot | Any AI coding agent
 
 > Rules in markdown are suggestions. Code hooks are laws.
 
@@ -37,10 +44,23 @@ This toolkit focuses on levels 1-2: the ones that actually work.
 
 ## Quick Start
 
+**For Claude Code:**
 ```bash
-# Install into your project
-bash scripts/install.sh /path/to/your/project
+git clone https://github.com/jzOcb/agent-guardrails ~/.claude/skills/agent-guardrails
+cd your-project && bash ~/.claude/skills/agent-guardrails/scripts/install.sh .
 ```
+
+**For Clawdbot:**
+```bash
+clawdhub install agent-guardrails
+```
+
+**Manual:**
+```bash
+bash /path/to/agent-guardrails/scripts/install.sh /path/to/your/project
+```
+
+📖 [Claude Code detailed guide](./CLAUDE_CODE_INSTALL.md)
 
 This will:
 - ✅ Install git pre-commit hook (blocks bypass patterns + hardcoded secrets)
