@@ -1,6 +1,49 @@
 ---
 name: agent-guardrails
-description: "Mechanical enforcement tools to prevent AI agents from bypassing established project standards. Use when setting up a new project workspace, configuring agent rules, or when an agent keeps rewriting existing validated code instead of importing it. Provides git hooks, pre/post-creation checks, secret detection, and registry templates. Reliability ranking from best to worst - code hooks, architectural constraints, self-verification, prompt rules, markdown."
+version: "1.1.0"
+author: "jzOcb"
+license: "MIT"
+category: "development-tools"
+description: "Stop AI agents from secretly bypassing your rules. Mechanical enforcement with git hooks, secret detection, deployment verification, and import registries. Born from real production incidents: server crashes, token leaks, code rewrites. Works with Claude Code, Clawdbot, Cursor. Install once, enforce forever."
+tags:
+  - "ai-safety"
+  - "code-quality"
+  - "enforcement"
+  - "git-hooks"
+  - "deployment"
+  - "security"
+  - "automation"
+  - "guardrails"
+  - "claude-code"
+  - "clawdbot"
+  - "cursor"
+  - "mechanical-enforcement"
+  - "agent-reliability"
+keywords:
+  - "AI agent bypassing"
+  - "code enforcement"
+  - "git hooks automation"
+  - "secret detection"
+  - "deployment verification"
+  - "import enforcement"
+  - "mechanical guardrails"
+  - "agent safety"
+  - "production incidents"
+  - "Claude Code skills"
+  - "Clawdbot skills"
+  - "AI coding safety"
+repository: "https://github.com/jzOcb/agent-guardrails"
+homepage: "https://github.com/jzOcb/agent-guardrails#readme"
+bugs: "https://github.com/jzOcb/agent-guardrails/issues"
+compatibility:
+  - "claude-code"
+  - "clawdbot"
+  - "cursor"
+  - "any-ai-agent"
+requirements:
+  bash: ">=4.0"
+  git: ">=2.0"
+pricing: "FREE"
 ---
 
 # Agent Guardrails

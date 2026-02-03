@@ -5,17 +5,26 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Version](https://img.shields.io/badge/version-1.1.0-green.svg)](./VERSION)
 
-**Mechanical enforcement tools to prevent AI agents from bypassing established project standards.**
+## Your AI agent secretly bypasses your rules. This skill enforces them with code.
 
-**Works with:** Claude Code | Clawdbot | Any AI coding agent
+**Works with:** Claude Code | Clawdbot | Cursor | Any AI coding agent
 
 > Rules in markdown are suggestions. Code hooks are laws.
+
+🚨 **Stop production incidents before they happen** — Born from real crashes, token leaks, and silent bypasses
 
 ## The Problem
 
 You spend hours building validation pipelines, scoring systems, and verification logic. Then your AI agent writes a "quick version" that bypasses all of it. Sound familiar?
 
-This isn't a prompting problem — it's an enforcement problem. More markdown rules won't fix it. You need mechanical enforcement.
+### Real Production Incidents (February 2026)
+
+**🔥 Server Crash:** Bad config edit → service crash loop → server down all night  
+**🔑 Token Leak:** Notion token hardcoded in code, nearly pushed to public GitHub  
+**🔄 Code Rewrite:** Agent rewrote validated scoring logic instead of importing it, sent unverified predictions  
+**🚀 Deployment Gap:** Built new features but forgot to wire them into production, users got incomplete output  
+
+This isn't a prompting problem — it's an enforcement problem. More markdown rules won't fix it. You need mechanical enforcement that **actually works**.
 
 ## Enforcement Hierarchy
 
