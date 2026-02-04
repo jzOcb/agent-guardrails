@@ -160,6 +160,10 @@ git clone https://github.com/jzOcb/agent-guardrails.git
 
 完整中文文档见 [`references/SKILL_CN.md`](references/SKILL_CN.md)
 
+## Related
+
+- [config-guard](https://github.com/jzOcb/config-guard) — Prevent AI agents from crashing OpenClaw by validating config changes (auto-backup, schema validation, auto-rollback)
+
 ## License
 
 MIT — Use it, share it, make your agents behave.

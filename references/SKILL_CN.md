@@ -143,3 +143,7 @@ MIT — 随便用，随便分享，让你的AI助手听话。
 
 **GitHub:** https://github.com/jzOcb/agent-guardrails  
 **英文文档:** [README.md](../README.md)
+
+## 相关项目
+
+- [config-guard](https://github.com/jzOcb/config-guard) — 防止 AI 改错 OpenClaw 配置导致网关崩溃（自动备份、schema 验证、自动回滚）
