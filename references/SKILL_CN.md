@@ -147,3 +147,4 @@ MIT — 随便用，随便分享，让你的AI助手听话。
 ## 相关项目
 
 - [config-guard](https://github.com/jzOcb/config-guard) — 防止 AI 改错 OpenClaw 配置导致网关崩溃（自动备份、schema 验证、自动回滚）
+- [upgrade-guard](https://github.com/jzOcb/upgrade-guard) — 安全升级 OpenClaw：快照、验证、自动回滚、OS 级 watchdog

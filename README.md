@@ -163,6 +163,7 @@ git clone https://github.com/jzOcb/agent-guardrails.git
 ## Related
 
 - [config-guard](https://github.com/jzOcb/config-guard) — Prevent AI agents from crashing OpenClaw by validating config changes (auto-backup, schema validation, auto-rollback)
+- [upgrade-guard](https://github.com/jzOcb/upgrade-guard) — Safe OpenClaw upgrades with snapshot, verification, auto-rollback, and OS-level watchdog
 
 ## License
 
