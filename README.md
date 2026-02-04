@@ -1,5 +1,7 @@
 # Agent Guardrails 🛡️
 
+[🇨🇳 中文文档](./references/SKILL_CN.md)
+
 [![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-8A2BE2)](https://github.com/topics/claude-code-skill)
 [![Clawdbot Skill](https://img.shields.io/badge/Clawdbot-Skill-blue)](https://clawdhub.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
