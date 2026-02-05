@@ -7,6 +7,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Version](https://img.shields.io/badge/version-1.1.0-green.svg)](./VERSION)
 
+📖 **Featured in:** [I audited my own AI agent system and found it full of holes](https://x.com/xxx111god/status/2019455237048709336) — the security audit that spawned this 5-tool security suite. ⭐ **`audit-skills.sh`** is the comprehensive audit script at the heart of the article.
+
 ## Your AI agent secretly bypasses your rules. This skill enforces them with code.
 
 **Works with:** Claude Code | Clawdbot | Cursor | Any AI coding agent
@@ -51,6 +53,7 @@ This toolkit focuses on levels 1-2: the ones that actually work.
 | `assets/pre-commit-hook` | Git hook that blocks bypass patterns + secrets |
 | `assets/registry-template.py` | Template `__init__.py` for import enforcement |
 | `references/agents-md-template.md` | Battle-tested AGENTS.md template |
+| `scripts/audit-skills.sh` | ⭐ Comprehensive security audit — scans all skills for gaps |
 | `references/enforcement-research.md` | Full research on why code > prompts |
 
 ## Quick Start
@@ -162,10 +165,17 @@ git clone https://github.com/jzOcb/agent-guardrails.git
 
 完整中文文档见 [`references/SKILL_CN.md`](references/SKILL_CN.md)
 
-## Related
+## 🛡️ Part of the AI Agent Security Suite
 
-- [config-guard](https://github.com/jzOcb/config-guard) — Prevent AI agents from crashing OpenClaw by validating config changes (auto-backup, schema validation, auto-rollback)
-- [upgrade-guard](https://github.com/jzOcb/upgrade-guard) — Safe OpenClaw upgrades with snapshot, verification, auto-rollback, and OS-level watchdog
+| Tool | What It Prevents |
+|------|-----------------|
+| **[agent-guardrails](https://github.com/jzOcb/agent-guardrails)** | AI rewrites validated code, leaks secrets, bypasses standards |
+| **[config-guard](https://github.com/jzOcb/config-guard)** | AI writes malformed config, crashes gateway |
+| **[upgrade-guard](https://github.com/jzOcb/upgrade-guard)** | Version upgrades break dependencies, no rollback |
+| **[token-guard](https://github.com/jzOcb/token-guard)** | Runaway token costs, budget overruns |
+| **[process-guardian](https://github.com/jzOcb/process-guardian)** | Background processes die silently, no auto-recovery |
+
+📖 **Read the full story:** [I audited my own AI agent system and found it full of holes](https://x.com/xxx111god/status/2019455237048709336)
 
 ## License
 
