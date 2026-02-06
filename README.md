@@ -180,3 +180,14 @@ git clone https://github.com/jzOcb/agent-guardrails.git
 ## License
 
 MIT — Use it, share it, make your agents behave.
+
+## 🛡️ Part of the OpenClaw Security Suite
+
+| Guard | Purpose | Protects Against |
+|-------|---------|------------------|
+| **[agent-guardrails](https://github.com/jzOcb/agent-guardrails)** | Pre-commit hooks + secret detection | Code leaks, unsafe commits |
+| **[config-guard](https://github.com/jzOcb/config-guard)** | Config validation + auto-rollback | Gateway crashes from bad config |
+| **[upgrade-guard](https://github.com/jzOcb/upgrade-guard)** | Safe upgrades + watchdog | Update failures, cascading breaks |
+| **[token-guard](https://github.com/jzOcb/token-guard)** | Usage monitoring + cost alerts | Budget overruns, runaway costs |
+
+📚 **Full writeup:** [4-Layer Defense System for AI Agents](https://x.com/xxx111god/status/2019096285853139083)
